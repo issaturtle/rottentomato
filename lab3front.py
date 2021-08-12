@@ -51,9 +51,8 @@ class mainWin(tk.Tk):
         #allows user to click on main actors and display the movies 
         web = webp(self,"main actor")
         self.wait_window(web)
-        result = ''.join(dict.fromkeys(web.getter()))
         if web.getter() != 0:
-            self.cur.execute("""SELECT * FROM MoviesDB WHERE actors0 = ? """, (*result,))
+            self.cur.execute("""SELECT * FROM MoviesDB WHERE actors0 = ? """, (web.getter(),))
             display = displayWin(self, self.cur.fetchall(),1)
 
     def month(self):
